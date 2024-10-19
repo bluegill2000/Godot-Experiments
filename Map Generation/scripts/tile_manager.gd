@@ -4,8 +4,8 @@ extends Node
 
 const rowOffset: int = -1
 const colOffset: int = -1
-const rows: int = 1
-const cols: int = 1
+const rows: int = 2
+const cols: int = 2
 const coordinateMultiplier: float = 5
 const tileTexturePath: String = "res://assets/misc/grass_tile_texture.jpg"
 const tileScriptPath: String = "res://scripts/tile.gd"

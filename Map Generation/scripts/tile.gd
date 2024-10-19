@@ -32,7 +32,8 @@ func configure(mapSeed: int, tile_type: Globals.WorldType, x: int, z: int):
 			tree_node.position.x = generator.randf_range(0, tileSize)
 			tree_node.position.z = generator.randf_range(0, tileSize)
 			
-			tree_node.position.y = tree_node.scale.y / 2
-			#tree_node.position.y = tree_node.texture.get_height() / 2
-			print("Generated tree at " + str(tree_node.position.x) + " " + str(tree_node.position.z) + " positioned above " + str(tree_node.position.y))
+			var image_height = tree_node.texture.get_height() * tree_node.pixel_size
+			tree_node.position.y = image_height / 2
+			
+			print("Created tree at " + str(tree_node.position))
 			add_child(tree_node)

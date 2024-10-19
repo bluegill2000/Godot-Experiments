@@ -1,6 +1,6 @@
 extends Node3D
 
-const speed: float = 0.03
+const speed: float = 6
 const mouse_speed: float = 0.3
 
 #var camera_anlge: float = 0
@@ -12,23 +12,23 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_key_pressed(KEY_UP):
-		position.z -= speed
-	elif Input.is_key_pressed(KEY_DOWN):
-		position.z += speed
+	var velocity = Input.get_vector("move_left", "move_right", "move_forward", "move_backward") * speed * delta
+	position.x += velocity.x
+	position.z += velocity.y
 	
-	if Input.is_key_pressed(KEY_RIGHT):
-		position.x += speed
-	elif Input.is_key_pressed(KEY_LEFT):
-		position.x -= speed
-	
-	if Input.is_key_pressed(KEY_SPACE):
-		position.y += speed
-	elif Input.is_key_pressed(KEY_SHIFT):
-		position.y -= speed
+	var elevation = Input.get_axis("move_down", "move_up") * speed * delta
+	position.y += elevation
 
 func _input(event: InputEvent):
-	if event is InputEventMouseMotion:
+	# Enable/Disable mouse capture
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		
+	
+	# Rotational movement
+	if event is InputEventMouseMotion and Input.MOUSE_MODE_CAPTURED:
 		var yaw = event.relative.x
 		var pitch = event.relative.y
 		
@@ -37,9 +37,3 @@ func _input(event: InputEvent):
 		
 		rotate_y(deg_to_rad((-yaw)))
 		rotate_object_local(Vector3(1, 0, 0), deg_to_rad(-pitch))
-		#rotate_y(deg_to_rad(-event.relative.x * mouse_speed))
-		#
-		#var changev = -event.relative.y * mouse_speed
-		#if camera_anlge + changev > -50 and camera_anlge + changev < 50:
-			#camera_anlge += changev
-			#rotate_x(deg_to_rad(changev))
