@@ -15,16 +15,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var forward = Input.get_axis("move_forward", "move_backward") * speed * delta
-	var lateral = Input.get_axis("move_left", "move_right") * speed * delta
+	var velocity = Input.get_vector("move_left", "move_right", "move_forward", "move_backward") * speed * delta
 	var elevation = Input.get_axis("move_down", "move_up") * speed * delta
+	var target = velocity.rotated(-camera_rot_x)
 	
-	var to_local_basis = global_transform.basis
-	var local_movement = to_local_basis * Vector3(lateral, 0, forward)
-	
-	position.x += local_movement.x
-	position.y += elevation
-	position.z += local_movement.z
+	position += Vector3(target.x, elevation, target.y)
 
 func _input(event: InputEvent):
 	# Enable/Disable mouse capture
