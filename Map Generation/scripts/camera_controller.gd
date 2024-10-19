@@ -1,10 +1,10 @@
 extends Node3D
 
 const speed: float = 6
-const mouse_speed: float = 0.3
+const mouse_speed: float = -0.01
 
-#var camera_anlge: float = 0
-var camera_pitch: float = 0
+var camera_rot_x: float = 0
+var camera_rot_y: float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,11 +27,11 @@ func _input(event: InputEvent):
 	
 	# Rotational movement
 	if event is InputEventMouseMotion and Input.MOUSE_MODE_CAPTURED:
-		var yaw = event.relative.x
-		var pitch = event.relative.y
+		camera_rot_x += event.relative.x * mouse_speed
+		camera_rot_y += event.relative.y * mouse_speed
 		
-		pitch = clamp(pitch, -90 - camera_pitch, 90 - camera_pitch)
-		camera_pitch += pitch
+		camera_rot_y = clamp(camera_rot_y, deg_to_rad(-90), deg_to_rad(90))
 		
-		rotate_y(deg_to_rad((-yaw)))
-		rotate_object_local(Vector3(1, 0, 0), deg_to_rad(-pitch))
+		transform.basis = Basis()
+		rotate_object_local(Vector3.UP, camera_rot_x)
+		rotate_object_local(Vector3.RIGHT, camera_rot_y)
