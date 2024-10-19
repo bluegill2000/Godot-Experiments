@@ -34,6 +34,7 @@ func configure(mapSeed: int, tile_type: Globals.WorldType, x: int, z: int):
 			
 			# Scale the trees
 			tree_node.pixel_size *= generator.randf_range(0.7, 1.3)
+			tree_node.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
 			
 			var image_height = tree_node.texture.get_height() * tree_node.pixel_size
 			tree_node.position.y = image_height / 2
@@ -52,7 +53,7 @@ func configure(mapSeed: int, tile_type: Globals.WorldType, x: int, z: int):
 			
 			# Shrink rocks down
 			rock_node.pixel_size = rock_node.pixel_size * 0.3
-			
+			rock_node.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
 			var image_height = rock_node.texture.get_height() * rock_node.pixel_size
 			rock_node.position.y = image_height / 2
 			
@@ -69,7 +70,7 @@ func configure(mapSeed: int, tile_type: Globals.WorldType, x: int, z: int):
 			
 			# Rotate log
 			log_node.rotate_z(deg_to_rad(-45))
-			
+			log_node.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
 			var image_height = log_node.texture.get_height() * log_node.pixel_size
 			log_node.position.y = image_height / 2
 			
