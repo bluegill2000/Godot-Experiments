@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfpue1sdd8x72"]
+
+[ext_resource type="Texture2D" uid="uid://c4v5bywtwfyiq" path="res://icon.svg" id="1_jn2bh"]
+[ext_resource type="Script" path="res://main.gd" id="1_wsbrd"]
+
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_wsbrd")
+sprite = NodePath("Sprite3D")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.58945)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+pixel_size = 0.1
+texture = ExtResource("1_jn2bh")

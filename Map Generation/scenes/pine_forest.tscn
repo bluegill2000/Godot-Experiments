@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdptmuobqhlpq"]
+
+[ext_resource type="Script" path="res://scripts/tile_manager.gd" id="2_ktbkt"]
+[ext_resource type="Script" path="res://scripts/camera_controller.gd" id="2_q24wt"]
+
+[node name="PineForest" type="Node3D"]
+
+[node name="tile_container" type="Node" parent="."]
+
+[node name="tile_manager" type="Node" parent="." node_paths=PackedStringArray("tileContainer")]
+script = ExtResource("2_ktbkt")
+tileContainer = NodePath("../tile_container")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.765292, 0.643683, 0, -0.643683, 0.765292, 0, 14.3046, 25.4313)
+script = ExtResource("2_q24wt")
