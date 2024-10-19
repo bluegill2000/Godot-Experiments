@@ -12,5 +12,5 @@ script = ExtResource("2_ktbkt")
 tileContainer = NodePath("../tile_container")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.765292, 0.643683, 0, -0.643683, 0.765292, 0, 14.3046, 25.4313)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.3046, 25.4313)
 script = ExtResource("2_q24wt")

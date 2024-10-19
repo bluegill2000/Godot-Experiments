@@ -20,7 +20,6 @@ func _ready() -> void:
 	var counter := 1
 	for row in range(rowOffset, rowOffset + rows):
 		for col in range(colOffset, colOffset + cols):
-			print("Generating tile at ", row, " ", col, " number ", counter)
 			var tile = Sprite3D.new()
 			tile.set_script(script)
 			
