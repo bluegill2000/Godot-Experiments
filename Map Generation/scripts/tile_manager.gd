@@ -2,10 +2,10 @@ extends Node
 
 @export var tileContainer: Node
 
-const rowOffset: int = -1
-const colOffset: int = -1
-const rows: int = 2
-const cols: int = 2
+const rowOffset: int = -4
+const colOffset: int = -4
+const rows: int = 6
+const cols: int = 6
 const coordinateMultiplier: float = 5
 const tileTexturePath: String = "res://assets/misc/grass_tile_texture.jpg"
 const tileScriptPath: String = "res://scripts/tile.gd"
