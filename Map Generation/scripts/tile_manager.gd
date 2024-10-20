@@ -5,8 +5,8 @@ extends Node
 const tile_scene = preload("res://prefabs/pine_forest/pine_forest_tile.tscn")
 const rowOffset: int = -4
 const colOffset: int = -4
-const rows: int = 6
-const cols: int = 6
+const rows: int = 8
+const cols: int = 8
 const coordinateMultiplier: float = 5
 const tileTexturePath: String = "res://assets/misc/grass_tile_texture.jpg"
 const tileScriptPath: String = "res://scripts/tile.gd"

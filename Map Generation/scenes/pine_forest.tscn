@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://cdptmuobqhlpq"]
 
+[ext_resource type="PackedScene" uid="uid://b0wfxo7hb7vtn" path="res://prefabs/player.tscn" id="2_8spif"]
 [ext_resource type="Script" path="res://scripts/tile_manager.gd" id="2_ktbkt"]
-[ext_resource type="Script" path="res://scripts/camera_controller.gd" id="2_q24wt"]
 
-[node name="PineForest" type="Node3D"]
+[node name="pine_forest_scene" type="Node3D"]
 
 [node name="tile_container" type="Node" parent="."]
 
@@ -11,6 +11,4 @@
 script = ExtResource("2_ktbkt")
 tileContainer = NodePath("../tile_container")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.3046, 25.4313)
-script = ExtResource("2_q24wt")
+[node name="Player" parent="." instance=ExtResource("2_8spif")]
