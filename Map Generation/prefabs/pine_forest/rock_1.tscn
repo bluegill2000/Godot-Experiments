@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://codxp5wkre4ni"]
+
+[ext_resource type="Texture2D" uid="uid://j17620dju3pd" path="res://assets/pine forest/rock_1.png" id="1_4vfvy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fpx2w"]
+size = Vector3(8.42, 1.29, 1)
+
+[node name="Rock1" type="Node3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.999391, -0.0348995, 0, 0.0348995, 0.999391, 0, 0, 0, 1, -4.32, -0.475, 0)
+centered = false
+render_priority = 1
+texture = ExtResource("1_4vfvy")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.695, 0)
+shape = SubResource("BoxShape3D_fpx2w")

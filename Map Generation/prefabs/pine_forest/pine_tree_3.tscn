@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://8jr1sp8oulk3"]
+
+[ext_resource type="Texture2D" uid="uid://bvelwg34dme1n" path="res://assets/pine forest/pine_tree_3.png" id="1_gac4m"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_eu1px"]
+
+[node name="tree" type="Node3D"]
+
+[node name="tree_sprite" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.135, 0)
+centered = false
+offset = Vector2(-364.2, 0)
+billboard = 2
+render_priority = 1
+texture = ExtResource("1_gac4m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.76, 0, 0, 0, 0.76, 0, 0, 0, 0.76, 0, 0.76, 0)
+shape = SubResource("CylinderShape3D_eu1px")

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://8r3kt2lt41jl"]
+
+[ext_resource type="Texture2D" uid="uid://d1xp1idhtlneo" path="res://assets/pine forest/fallen_log_1.png" id="1_j5o4r"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ey3wv"]
+size = Vector3(4.7, 0.82, 1)
+
+[node name="Node" type="Node3D"]
+
+[node name="fallen_log_1" type="Sprite3D" parent="."]
+transform = Transform3D(0.734004, 0.677708, 0.0441618, -0.678064, 0.734952, -0.008643, -0.0383143, -0.0236003, 0.998987, 0.57, 0.21, 0)
+render_priority = 1
+texture = ExtResource("1_j5o4r")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31, 0)
+shape = SubResource("BoxShape3D_ey3wv")
