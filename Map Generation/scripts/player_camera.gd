@@ -2,7 +2,7 @@ extends Node3D
 
 @export var player: CharacterBody3D
 
-const speed: float = 900
+const speed: float = 500
 const mouse_speed: float = -0.01
 
 var camera_rot_x: float = 0
@@ -15,8 +15,7 @@ func _ready():
 	mouse_captured = true
 	print("Camera controls ready")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	var velocity = Input.get_vector("move_left", "move_right", "move_forward", "move_backward") * speed * delta
 	var target = velocity.rotated(-camera_rot_x)
 	

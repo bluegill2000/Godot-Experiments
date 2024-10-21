@@ -23,3 +23,9 @@ func _ready() -> void:
 			
 			tileContainer.add_child(tile)
 			tile.configure(worldSeed, Globals.WorldType.pine_forest, row, col)
+	
+	# Invite Bigfoot
+	var big_foot = BigFoot.new_big_foot(80, -40)
+	big_foot.position = Vector3(-50, 0, -50)
+	print("Added bigfood at " + str(big_foot.position))
+	add_child(big_foot)

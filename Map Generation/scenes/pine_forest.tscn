@@ -11,4 +11,4 @@
 script = ExtResource("2_ktbkt")
 tileContainer = NodePath("../tile_container")
 
-[node name="Player" parent="." instance=ExtResource("2_8spif")]
+[node name="player" parent="." instance=ExtResource("2_8spif")]
