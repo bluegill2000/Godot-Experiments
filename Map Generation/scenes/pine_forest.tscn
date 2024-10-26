@@ -7,8 +7,9 @@
 
 [node name="tile_container" type="Node" parent="."]
 
-[node name="tile_manager" type="Node" parent="." node_paths=PackedStringArray("tileContainer")]
+[node name="tile_manager" type="Node" parent="." node_paths=PackedStringArray("tileContainer", "player_node")]
 script = ExtResource("2_ktbkt")
 tileContainer = NodePath("../tile_container")
+player_node = NodePath("../player")
 
 [node name="player" parent="." instance=ExtResource("2_8spif")]

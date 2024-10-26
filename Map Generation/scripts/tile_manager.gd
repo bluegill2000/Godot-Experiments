@@ -1,6 +1,7 @@
 extends Node
 
 @export var tileContainer: Node
+@export var player_node: Node3D
 
 const tile_scene = preload("res://prefabs/pine_forest/pine_forest_tile.tscn")
 const rowOffset: int = -4
@@ -25,7 +26,7 @@ func _ready() -> void:
 			tile.configure(worldSeed, Globals.WorldType.pine_forest, row, col)
 	
 	# Invite Bigfoot
-	var big_foot = BigFoot.new_big_foot(80, -40)
+	var big_foot = BigFoot.new_big_foot(80, -40, player_node)
 	big_foot.position = Vector3(-50, 0, -50)
-	print("Added bigfood at " + str(big_foot.position))
+	
 	add_child(big_foot)
