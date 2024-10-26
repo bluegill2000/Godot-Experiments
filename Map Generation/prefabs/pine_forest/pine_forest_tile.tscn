@@ -8,6 +8,7 @@ script = ExtResource("1_55r1y")
 
 [node name="ground_texture" type="Sprite3D" parent="."]
 transform = Transform3D(0.833, 0, 0, 0, 0.833, 0, 0, 0, 0.833, 5, 0, 5)
+visible = false
 axis = 1
 transparent = false
 texture = ExtResource("2_c5ywg")

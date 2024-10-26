@@ -13,3 +13,6 @@ tileContainer = NodePath("../tile_container")
 player_node = NodePath("../player")
 
 [node name="player" parent="." instance=ExtResource("2_8spif")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.697678, -0.527179, 0.485106, 0, 0.677133, 0.735861, -0.716412, -0.513394, 0.472421, 10.5292, 21.799, 0)

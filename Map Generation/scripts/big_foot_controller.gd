@@ -1,8 +1,6 @@
 class_name BigFoot
 extends CharacterBody3D
 
-var world_size: int
-var world_offset: int
 var player_node: Node3D
 
 const walking_speed = 4
@@ -14,10 +12,8 @@ const packed_scene: PackedScene = preload("res://prefabs/big_foot.tscn")
 var target: Vector3 = Vector3(0, 0, 0)
 var is_fleeing = false
 
-static func new_big_foot(world_size: int, world_offset: int, player: Node3D) -> BigFoot:
+static func new_big_foot(player: Node3D) -> BigFoot:
 	var big_foot = packed_scene.instantiate()
-	big_foot.world_size = world_size
-	big_foot.world_offset = world_offset
 	big_foot.player_node = player
 	
 	return big_foot
@@ -29,8 +25,8 @@ func create_new_target():
 	var found_target: bool = false
 	
 	while !found_target:
-		var rand_x = randf_range(0, world_size) + world_offset
-		var rand_z = randf_range(0, world_size) + world_offset
+		var rand_x = randf_range(0, Globals.rows * 10) + (Globals.row_offset * 10)
+		var rand_z = randf_range(0, Globals.cols * 10) + (Globals.col_offset * 10)
 		
 		var new_target = Vector3(rand_x, 0, rand_z)
 		if target.distance_to(new_target) > 10:

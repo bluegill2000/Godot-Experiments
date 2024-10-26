@@ -7,6 +7,7 @@ const pine_tree_4_scene = preload("res://prefabs/pine_forest/pine_tree_4.tscn")
 const fallen_log_1_scene = preload("res://prefabs/pine_forest/fallen_log_1.tscn")
 const rock_1_scene = preload("res://prefabs/pine_forest/rock_1.tscn")
 const rock_2_scene = preload("res://prefabs/pine_forest/rock_2.tscn")
+const grass_texture = preload("res://materials/grass.tres")
 
 const tile_size = 10
 
@@ -14,14 +15,44 @@ const tile_size = 10
 func _ready():
 	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-	#pass
-
-func configure(mapSeed: int, tile_type: Globals.WorldType, x: int, z: int):
+func configure(mapSeed: int, tile_type: Globals.WorldType, x: int, z: int, noise: FastNoiseLite):
 	position.x = x * tile_size
 	position.z = z * tile_size
 	
+	# Create terrain
+	var plane_mesh = PlaneMesh.new()
+	plane_mesh.size = Vector2(tile_size, tile_size)
+	plane_mesh.subdivide_depth = 10
+	plane_mesh.subdivide_width = 10
+	
+	var surface_tool = SurfaceTool.new()
+	surface_tool.create_from(plane_mesh, 0)
+	
+	var plane_array = surface_tool.commit()
+	var data_tool = MeshDataTool.new()
+	data_tool.create_from_surface(plane_array, 0)
+	
+	for i in range(data_tool.get_vertex_count()):
+		var vertex = data_tool.get_vertex(i)
+		vertex.y = noise.get_noise_3d(vertex.x + (x * 10), vertex.y, vertex.z + (z * 10)) * 1.4
+		
+		data_tool.set_vertex(i, vertex)
+	
+	plane_array.clear_surfaces()
+	
+	data_tool.commit_to_surface(plane_array)
+	surface_tool.begin(Mesh.PRIMITIVE_TRIANGLES)
+	surface_tool.create_from(plane_array, 0)
+	surface_tool.generate_normals()
+	
+	var mesh_instance = MeshInstance3D.new()
+	mesh_instance.mesh = surface_tool.commit()
+	mesh_instance.material_override = grass_texture
+	add_child(mesh_instance)
+	
+	return
+	
+	# Terrain entities
 	var generator = RandomNumberGenerator.new()
 	generator.seed = hash(str(x) + str(z) + str(mapSeed)) # Each tile has a 'different' seed
 	
