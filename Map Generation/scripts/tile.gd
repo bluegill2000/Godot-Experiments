@@ -15,7 +15,7 @@ const tile_size = 10
 func _ready():
 	pass # Replace with function body.
 
-func configure(mapSeed: int, tile_type: Globals.WorldType, x: int, z: int, noise: FastNoiseLite):
+func configure(mapSeed: int, tile_type: Globals.WorldType, x: int, z: int, noise: TerrainNoise):
 	position.x = x * tile_size
 	position.z = z * tile_size
 	
@@ -34,7 +34,7 @@ func configure(mapSeed: int, tile_type: Globals.WorldType, x: int, z: int, noise
 	
 	for i in range(data_tool.get_vertex_count()):
 		var vertex = data_tool.get_vertex(i)
-		vertex.y = noise.get_noise_3d(vertex.x + (x * 10), vertex.y, vertex.z + (z * 10)) * 1.4
+		vertex.y = noise.height_at(vertex.x + (x * 10), vertex.z + (z * 10))
 		
 		data_tool.set_vertex(i, vertex)
 	
@@ -50,7 +50,9 @@ func configure(mapSeed: int, tile_type: Globals.WorldType, x: int, z: int, noise
 	mesh_instance.material_override = grass_texture
 	add_child(mesh_instance)
 	
-	return
+	var collision_shape = CollisionShape3D.new()
+	collision_shape.shape = mesh_instance.mesh.create_convex_shape(true, true)
+	$static_body.add_child(collision_shape)
 	
 	# Terrain entities
 	var generator = RandomNumberGenerator.new()
@@ -77,6 +79,7 @@ func configure(mapSeed: int, tile_type: Globals.WorldType, x: int, z: int, noise
 					tree_node = pine_tree_4_scene.instantiate()
 			
 			tree_node.position.x = location.x
+			tree_node.position.y = noise.height_at(location.x + (x * 10), location.y + (z * 10))
 			tree_node.position.z = location.y
 			
 			# Scale the trees
@@ -95,6 +98,7 @@ func configure(mapSeed: int, tile_type: Globals.WorldType, x: int, z: int, noise
 					rock_node = rock_2_scene.instantiate()
 			
 			rock_node.position.x = location.x
+			rock_node.position.y = noise.height_at(location.x + (x * 10), location.y + (z * 10))
 			rock_node.position.z = location.y
 			
 			# Shrink rocks down
@@ -109,6 +113,7 @@ func configure(mapSeed: int, tile_type: Globals.WorldType, x: int, z: int, noise
 			var location = locations[tree_count + rock_count]
 			var log_node = fallen_log_1_scene.instantiate()
 			log_node.position.x = location.x
+			log_node.position.y = noise.height_at(location.x + (x * 10), location.y + (z * 10))
 			log_node.position.z = location.y
 			
 			# Rotate log

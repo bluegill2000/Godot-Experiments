@@ -13,18 +13,15 @@ var tiles: Array[Sprite3D] = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Generate tile set
-	var worldSeed: int = randi()
-	var noise = FastNoiseLite.new()
-	noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
-	noise.fractal_octaves = 3
-	noise.frequency = 0.06
+	var world_seed: int = randi()
+	var terrain = TerrainNoise.pine_forest_terrain(world_seed)
 	
 	for row in range(Globals.row_offset, Globals.row_offset + Globals.rows):
 		for col in range(Globals.col_offset, Globals.col_offset + Globals.cols):
 			var tile = tile_scene.instantiate()
 			
 			tileContainer.add_child(tile)
-			tile.configure(worldSeed, Globals.WorldType.pine_forest, row, col, noise)
+			tile.configure(world_seed, Globals.WorldType.pine_forest, row, col, terrain)
 	
 	return
 	# Invite Bigfoot
